@@ -205,12 +205,182 @@
 
     <!-- Footer -->
     <footer class="gov-footer">
-        <!-- Keep your footer content as before -->
+        <div class="footer-container container">
+            <!-- Left section -->
+            <div class="footer-left">
+                <img src="https://business.edbmauritius.org/wps/wcm/connect/business/868397c6-fa4f-4eed-af98-f1e4cc2a9b84/ISO-IEC-27001-2022+Red.png?MOD=AJPERES"
+                    alt="MSECB ISO Certification" class="footer-badge">
+                <div class="footer-left-links">
+                    <a href="https://msecb.com/economic-development-board/" class="footer-link">Success Story</a>
+                    <p class="helpdesk-title">Helpdesk Contact:
+                        <a href="https://edbmauritius.atlassian.net/servicedesk/customer/portal/13" target="_blank"
+                            class="footer-link">Click Here</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Columns -->
+            <div class="footer-cols">
+                <div>
+                    <h6>Government Directory</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Ministries</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Departments</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Parastatal Organisations</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/default.aspx">Other Bodies</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Legislations</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/infoservices/justiceanddefence/Pages/default.aspx">Justice &
+                                Defence</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Explore Mauritius</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/exploremauritius.aspx">History</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Media</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/ViewAllCommunique.aspx">Communiqués</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6>Other Links</h6>
+                    <ul>
+                        <li><a href="https://govmu.org/EN/Pages/ViewAllNews.aspx">News</a></li>
+                        <li><a href="https://govmu.org/EN/Pages/eservices.aspx">E-Services</a></li>
+                        <li><a href="/wps/wcm/connect/business/2fd3d85c-d2ff-4068-a0cb-a70a134f518a/ISMS-POL+-+ISMS+Policy+v2.0.pdf?MOD=AJPERES"
+                                target="_blank">ISMS Policy</a></li>
+                        <li><a href="/wps/wcm/connect/business/5fb022e9-8cf8-43d7-a785-ae8f72840d80/ISMS-POL-Supplier_Relationships_Policy_v1.0.pdf?MOD=AJPERES"
+                                target="_blank">Supplier Relationship Policy</a></li>
+                        <li><a href="/wps/portal/business/home/termsOfUse/">Terms of Use</a></li>
+                        <li><a href="/wps/portal/business/home/privacyPolicy/">Privacy Policy</a></li>
+                        <li><a href="/wps/wcm/connect/business/603e5254-36a2-4655-a19c-c557a654fb27/BusinessContact.pdf?MOD=AJPERES"
+                                target="_blank">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <style>
+        .gov-footer {
+            background: #404040;
+            color: #a7a9ac;
+            padding: 50px 0 50px;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-left {
+            flex: 1 1 200px;
+            min-width: 200px;
+        }
+
+        .footer-badge {
+            width: 80px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-left-links {
+            margin-top: 5px;
+        }
+
+        .footer-left-links a.footer-link {
+            display: block;
+            color: #a7a9ac;
+            text-decoration: none;
+            margin-bottom: 6px;
+        }
+
+        .footer-left-links a.footer-link:hover {
+            color: #ffffff;
+        }
+
+        .helpdesk-title {
+            margin: 0;
+            font-size: 15px;
+            color: #dcdcdc;
+        }
+
+        .helpdesk-title a {
+            color: #6ca0dc;
+            text-decoration: none;
+        }
+
+        .helpdesk-title a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-cols {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 3;
+            gap: 40px;
+        }
+
+        .footer-cols div {
+            min-width: 105px;
+        }
+
+        .footer-cols h6 {
+            font-size: 15px;
+            color: #dcdcdc;
+            margin-bottom: 8px;
+        }
+
+        .footer-cols ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-cols li {
+            margin-bottom: 5px;
+        }
+
+        .footer-cols a {
+            color: #a7a9ac;
+            text-decoration: none;
+        }
+
+        .footer-cols a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                flex-direction: column;
+            }
+
+            .footer-cols {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
 
     <script>
         // Replace with your Render URL
-        const BACKEND_URL = 'https://yourappname.onrender.com/save';
+        const BACKEND_URL = 'https://search-permit.onrender.com';
 
         document.getElementById('permitForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -244,3 +414,4 @@
 
 </body>
 </html>
+
