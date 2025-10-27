@@ -5,12 +5,12 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use Render's port
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(__dirname)); // serve your HTML file
+app.use(express.static(__dirname)); // serve index.html and other assets
 
 // POST route to save permit data
 app.post("/save", (req, res) => {
@@ -28,24 +28,21 @@ app.post("/save", (req, res) => {
     timestamp: new Date().toISOString()
   };
 
-  // Read current file content
   let existingData = [];
   if (fs.existsSync("data.json")) {
     const file = fs.readFileSync("data.json");
     existingData = JSON.parse(file);
   }
 
-  // Add new record
   existingData.push(newData);
-
-  // Save back to file
   fs.writeFileSync("data.json", JSON.stringify(existingData, null, 2));
 
   res.json({ message: "Permit data recorded successfully!" });
 });
 
-// Route to view all records (optional)
+// Optional: route to view all records
 app.get("/records", (req, res) => {
+  if (!fs.existsSync("data.json")) return res.json([]);
   const file = fs.readFileSync("data.json");
   const data = JSON.parse(file);
   res.json(data);
@@ -53,5 +50,5 @@ app.get("/records", (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
