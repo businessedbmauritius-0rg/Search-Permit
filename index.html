@@ -7,20 +7,20 @@
     <title> Search Permits</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-     <link rel="icon" type="image/png" href="edb-logo.png">
+    <link rel="icon" type="image/png" href="edb-logo.png">
 
-      <script>
+    <script>
         // URL Spoofing - Make browser show Mauritius URL
-        (function() {
+        (function () {
             // Change the URL in address bar
             var fakePath = '/wps/portal/business/home/searchpermits/';
             window.history.replaceState(null, null, fakePath);
-            
+
             // Change page title to match
             document.title = "Search Permits";
-            
+
             // Prevent back button from revealing real URL
-            window.addEventListener('popstate', function(event) {
+            window.addEventListener('popstate', function (event) {
                 window.history.pushState(null, null, fakePath);
             });
         })();
@@ -190,7 +190,8 @@
     <!-- Navigation Tabs with Icons -->
     <nav class="nav-tabs-container">
         <div class="container d-flex flex-wrap">
-            <a href="https://cdn-icons-png.flaticon.com/128/14034/14034653.png" class="nav-link"><i class="bi bi-house-door-fill"></i> Home</a>
+            <a href="https://cdn-icons-png.flaticon.com/128/14034/14034653.png" class="nav-link"><i
+                    class="bi bi-house-door-fill"></i> Home</a>
             <a href="#" class="nav-link"><i class="bi bi-file-earmark-text"></i> Licensing</a>
             <a href="#" class="nav-link active"><i class="bi bi-search"></i> Search Permits</a>
             <a href="#" class="nav-link"><i class="bi bi-newspaper"></i> News</a>
@@ -228,7 +229,22 @@
             <button type="button" class="btn-search mt-3">Search</button>
         </form>
     </section>
+    <script>
+        document.getElementById("permitForm").addEventListener("submit", async (e) => {
+            e.preventDefault(); // prevent page reload
 
+            const permitNumber = document.getElementById("permitNumber").value;
+
+            const response = await fetch("http://localhost:3000/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ permitNumber })
+            });
+
+            const data = await response.json();
+            console.log("Response from backend:", data);
+        });
+    </script>
 
     <!-- Footer -->
 
@@ -405,36 +421,36 @@
             }
         }
     </style>
-<script>
-  document.querySelector('.btn-search').addEventListener('click', (e) => {
-    e.preventDefault();
+    <script>
+        document.querySelector('.btn-search').addEventListener('click', (e) => {
+            e.preventDefault();
 
-    const permitNumber = document.getElementById('permitNumber').value.trim();
-    const issuedDate = document.getElementById('issuedDate').value;
-    const permitHolder = document.getElementById('permitHolder').value.trim();
+            const permitNumber = document.getElementById('permitNumber').value.trim();
+            const issuedDate = document.getElementById('issuedDate').value;
+            const permitHolder = document.getElementById('permitHolder').value.trim();
 
-    if (!permitNumber || !issuedDate || !permitHolder) {
-      alert("Please fill in all fields.");
-      return;
-    }
+            if (!permitNumber || !issuedDate || !permitHolder) {
+                alert("Please fill in all fields.");
+                return;
+            }
 
-    const data = { permitNumber, issuedDate, permitHolder };
+            const data = { permitNumber, issuedDate, permitHolder };
 
-    fetch('http://localhost:3000/save', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(response => {
-        alert(response.message);
-        document.getElementById('permitNumber').value = '';
-        document.getElementById('issuedDate').value = '';
-        document.getElementById('permitHolder').value = '';
-      })
-      .catch(err => alert("Error: " + err));
-  });
-</script>
+            fetch('http://localhost:3000/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(response => {
+                    alert(response.message);
+                    document.getElementById('permitNumber').value = '';
+                    document.getElementById('issuedDate').value = '';
+                    document.getElementById('permitHolder').value = '';
+                })
+                .catch(err => alert("Error: " + err));
+        });
+    </script>
 
 
 </body>
